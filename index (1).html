@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        :root {
+            --color-primary: #000;
+            --color-bg: #fff;
+            --color-text: #222;
+            --color-text-light: #666;
+            --color-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        nav {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+
+        nav h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: color 0.2s, border-color 0.2s;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--color-text-light);
+        }
+
+        nav a.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-start;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 0.7rem 2rem;
+            border: 1px solid var(--color-primary);
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 3px;
+        }
+
+        .btn:hover {
+            background: #333;
+            border-color: #333;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .about-text {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-description {
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cv-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .contact-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-text-light);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-direction: row;
+            }
+
+            nav h1 {
+                font-size: 1rem;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: white;
+                border-bottom: 1px solid var(--color-border);
+                padding: 1rem 0;
+                text-align: center;
+                z-index: 99;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                padding: 0.8rem 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            nav a {
+                padding-bottom: 0;
+                display: block;
+            }
+
+            nav a.active {
+                border-bottom: none;
+                font-weight: 600;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+            }
+
+            .hero-image img {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Portfolio</h1>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <ul id="navMenu">
+            <li><a href="#about" class="nav-link active">About</a></li>
+            <li><a href="#research" class="nav-link">Research</a></li>
+            <li><a href="#work" class="nav-link">Work</a></li>
+            <li><a href="#cv" class="nav-link">CV</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="https://lh3.googleusercontent.com/d/1LrmHuICuyF_eYjzqaUuvT2MTL7m6hm9i" alt="Niloofar Zamani Foroushani">
+            </div>
+            <div class="hero-text">
+                <h1>Hi, I'm Niloofar</h1>
+                <p>PhD Researcher in Operations & Analytics | Data Science | Machine Learning | Optimization | Quantitative Modeling</p>
+                <div class="hero-buttons">
+                    <a href="#cv" class="btn btn-secondary">My CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About</h2>
+            <div class="about-text">
+                <p>I am a PhD researcher at Imperial College Business School specializing in Operations & Analytics. My research interests focus on information design, pricing strategies in digital platforms, and developing interpretable stratification strategies for healthcare screening guidelines.</p>
+                <p>With a strong background in industrial engineering and data-driven decision making, I combine quantitative modeling and machine learning techniques to solve complex real-world problems. My expertise spans econometrics, stochastic optimization, and business analytics.</p>
+                <p>I am passionate about translating research into practical applications and have experience working with industry partners to implement data-driven solutions that drive measurable improvements in efficiency and performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="research">
+        <div class="container">
+            <h2>Research</h2>
+            <h3>Recent Research</h3>
+            <p><strong>Information Design and Pricing in Digital Platforms</strong></p>
+            <p>Investigating optimal information disclosure strategies and pricing mechanisms in digital marketplaces to maximize platform value and user satisfaction.</p>
+            <p style="margin-top: 1.5rem;"><strong>Optimal Recurrence Surveillance for Cancer Patients</strong></p>
+            <p>Developing interpretable stratification strategies for screening guidelines in head and neck cancer patients, balancing detection accuracy with cost-effectiveness.</p>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="container">
+            <h2>Work</h2>
+            <p><strong>Graduate Teaching Assistant - London Business School (Aug 2024 - Present)</strong></p>
+            <p>Conducting workshops and tutorials for courses in Data Science, Data Analytics, Decision and Risk Analysis, Business Analytics, and Data Visualization.</p>
+            <p style="margin-top: 1.5rem;"><strong>Director of Research - AI Spy Media (Jun 2024 - Present)</strong></p>
+            <p>Leading research initiatives to explore groundbreaking developments in AI and ML, translating complex concepts into engaging content for diverse audiences.</p>
+            <p style="margin-top: 1.5rem;"><strong>Graduate Teaching Assistant - Imperial Business School (Feb 2022 - Present)</strong></p>
+            <p>Conducting tutorials and designing course assignments for Logistics and Supply Chain Analytics, Statistics and Econometrics, and Math & Statistics Foundation for Analytics.</p>
+            <p style="margin-top: 1.5rem;"><strong>Consultant for Data Analysis - Arya Sasol Co., Tehran (Aug 2018 - Mar 2020)</strong></p>
+            <p>Led cross-functional teams analyzing procurement processes, designed strategic data visualization dashboards, and delivered actionable recommendations resulting in a 10% reduction in claim process wait time.</p>
+        </div>
+    </section>
+
+    <section id="cv">
+        <div class="container">
+            <h2>CV</h2>
+            <p class="cv-description">Download or view my resume to learn more about your experience, skills, and education.</p>
+            <div class="cv-buttons">
+                <a href="https://drive.google.com/uc?export=download&id=1jIMgBSRGNs8FsQWLymu8U-4bOboGYC1e" target="_blank" rel="noopener noreferrer" class="btn">Download CV</a>
+                <a href="https://drive.google.com/uc?export=download&id=1jIMgBSRGNs8FsQWLymu8U-4bOboGYC1e" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View CV</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:n.zamani-foroushani20@imperial.ac.uk">n.zamani-foroushani20@imperial.ac.uk</a>
+                </div>
+                <div class="contact-item">
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">github.com/YOUR_GITHUB_USERNAME</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/niloofar-zamani" target="_blank" rel="noopener noreferrer">linkedin.com/in/niloofar-zamani</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Toggle mobile menu
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Active link highlighting on scroll
+        function setActiveLink() {
+            const fromTop = window.scrollY + 80;
+
+            navLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute('href'));
+                if (!section) return;
+
+                if (
+                    section.offsetTop <= fromTop &&
+                    section.offsetTop + section.offsetHeight > fromTop
+                ) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink);
+        window.addEventListener('load', setActiveLink);
+    </script>
+</body>
+</html>
