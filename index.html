@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        :root {
+            --color-primary: #000;
+            --color-bg: #fff;
+            --color-text: #222;
+            --color-text-light: #666;
+            --color-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+
+        nav h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--color-text-light);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.7rem 2rem;
+            border: 1px solid var(--color-primary);
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 3px;
+        }
+
+        .btn:hover {
+            background: #333;
+            border-color: #333;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* GitHub Section */
+        .github-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .github-link {
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .github-link:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* CV Section */
+        .cv-description {
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cv-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .contact-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-text-light);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <h1>Portfolio</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#github">GitHub</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Hi, I'm Niloofar</h1>
+        <p>PhD Researcher in Operations & Analytics | Data Science | Machine Learning | Optimization | Quantitative Modeling</p>
+        <div class="hero-buttons">
+            <a href="#cv" class="btn btn-secondary">My CV</a>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section class="github-section" id="github">
+        <div class="container">
+            <h2>GitHub</h2>
+            <div class="github-stats">
+                <div class="stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Contributions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Stars</div>
+                </div>
+            </div>
+            <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer" class="github-link">Visit GitHub</a>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv">
+        <div class="container">
+            <h2>CV</h2>
+            <p class="cv-description">
+                Download or view my resume to learn more about my experience, skills, and education.
+            </p>
+            <div class="cv-buttons">
+                <a href="https://drive.google.com/your-cv-link" target="_blank" rel="noopener noreferrer" class="btn">Download CV</a>
+                <a href="https://drive.google.com/your-cv-link" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:n.zamani-foroushani20@imperial.ac.uk">n.zamani-foroushani20@imperial.ac.uk</a>
+                </div>
+                <div class="contact-item">
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">github.com/YOUR_GITHUB_USERNAME</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/niloofar-zamani" target="_blank" rel="noopener noreferrer">linkedin.com/in/niloofar-zamani</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
